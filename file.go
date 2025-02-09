@@ -15,7 +15,7 @@ import (
 
 // NormalizePath join and normalize file path.
 func NormalizePath(path ...string) string {
-	return filepath.Clean(filepath.Join(path...))
+	return filepath.ToSlash(filepath.Clean(filepath.Join(path...)))
 }
 
 // CreateDirectory create nested directory.
