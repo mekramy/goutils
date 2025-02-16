@@ -15,13 +15,13 @@ func RelativeURL(root string, path ...string) string {
 	normalizedPath := NormalizePath(path...)
 	relPath := strings.TrimPrefix(normalizedPath, normalizedRoot)
 	relPath = strings.TrimPrefix(relPath, string(filepath.Separator))
-	return filepath.ToSlash(relPath)
+	return filepath.Clean(filepath.ToSlash(relPath))
 }
 
 // AbsoluteURL returns the absolute URL path of
 // file with respect to the root directory.
 func AbsoluteURL(root string, path ...string) string {
-	return "/" + RelativeURL(root, path...)
+	return filepath.Clean("/" + RelativeURL(root, path...))
 }
 
 // SanitizeRaw sanitize input to raw text.
